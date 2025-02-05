@@ -8,7 +8,7 @@ const cheerSound = new Audio('assets/371339__johanneskristjansson__cheer-crowd.m
 
 document.getElementById("rollDiceBtn").addEventListener("click", function () {
     rollSound.play();
-    const diceResult = Math.floor(Math.random() * 6) + 1; // 1 és 6 közötti egész szám
+    let diceResult = Math.floor(Math.random() * 6) + 1; // 1 és 6 közötti egész szám
     let message = "";
     switch (diceResult) {
         case 1:
@@ -38,15 +38,16 @@ document.getElementById("rollDiceBtn").addEventListener("click", function () {
 
     document.getElementById("diceResult").innerHTML = `🎲${diceResult} <br> ${message}`;
 
-    if (currentPlayer === 1) {
+    // Ez a hatos újradobás miatt kell, ugyanis akkor nem szabad játékos váltani
+    if (currentPlayer === 1 && diceResult < 6) {
         changePlayer(2);
-    } else {
+    } else if(diceResult < 6){
         changePlayer(1);
+    }
+    function changePlayer(nextPlayer) {
+        currentPlayerHTML.innerHTML = `Játékos ${currentPlayer} dobása`;
+        playerTurnHTML.innerHTML = `Most játékos ${nextPlayer} jön`;
+        currentPlayer = nextPlayer; // következő játékos
     }
 });
 
-function changePlayer(nextPlayer) {
-    currentPlayerHTML.innerHTML = `Játékos ${currentPlayer} dobása`;
-    playerTurnHTML.innerHTML = `Most játékos ${nextPlayer} jön`;
-    currentPlayer = nextPlayer; // következő játékos
-}
