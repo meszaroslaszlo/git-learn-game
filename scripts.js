@@ -1,3 +1,5 @@
+let currentPlayer = 1;
+
 const rollSound = new Audio('assets/547929__scifisounds__dice-roll-2.mp3');
 const laughSound = new Audio('assets/381375__funwithsound__laugh-crowd-1.mp3');
 const cheerSound = new Audio('assets/371339__johanneskristjansson__cheer-crowd.mp3');
@@ -33,4 +35,14 @@ document.getElementById("rollDiceBtn").addEventListener("click", function () {
     }
 
     document.getElementById("diceResult").innerHTML = `🎲${diceResult} <br> ${message}`;
+
+    if (currentPlayer === 1) {
+        document.getElementById("currentPlayer").innerHTML = "Játékos 1 dobása";
+        document.getElementById("playerTurn").innerHTML = "Most játékos 2 jön";
+        currentPlayer = 2; // következő játékos
+    } else {
+        document.getElementById("currentPlayer").innerHTML = "Játékos 2 dobása";
+        document.getElementById("playerTurn").innerHTML = "Most játékos 1 jön";
+        currentPlayer = 1; // következő játékos
+    }
 });
