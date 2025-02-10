@@ -5,7 +5,7 @@ body {
 .card {
     max-width: 600px;
     margin: auto;
-    border-radius: 25px;
+    border-radius: 30px;
 }
 
 @keyframes shake {
@@ -39,3 +39,4 @@ button {
     font-size: 3rem;
     animation: bounce 1s ease-in-out;
 }
+
